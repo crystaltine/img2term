@@ -1,4 +1,5 @@
 import os
+from typing import Tuple
 
 STYLE_CODES = {
     'bold': '\033[1m',
@@ -125,6 +126,24 @@ def fcode(foreground: str | tuple[int] = None, background: str | tuple[int] = No
             
         format_str += style_format_string
     
+    return format_str
+
+def fcode_opt(fg: Tuple[int, int, int] = None, bg: Tuple[int, int, int] = None) -> str:
+    '''
+    Optimized version of `fcode` (see docs for that) - BUT:
+    - only accepts 3-tuples for colors
+    - no letter styling (bold, italic, etc.)
+    - no predefined color names
+    Mainly used for drawing block elements (pixels) in the terminal.
+    '''
+    
+    format_str = ''
+    
+    if fg is not None:
+        format_str += '\033[38;2;{};{};{}m'.format(*fg)
+    if bg is not None:
+        format_str += '\033[48;2;{};{};{}m'.format(*bg)
+        
     return format_str
 
 def cls() -> None:

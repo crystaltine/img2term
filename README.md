@@ -7,6 +7,6 @@
 ### Note: This project is a work in progress.
 
 ### How to test:
-Go into `main.py` and change `im = Image.open('img4.png')` to `im = Image.open('your_image_path.png')` and just run the script.
+use `draw()`
 
 Don't worry, this should become more framework-like (meaning OOP :D) soon.
